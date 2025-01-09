@@ -1,8 +1,10 @@
 import AuthForm from "./AuthForm";
+import FormContainer from "./AuthForm/FormContainer";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
   return (
-    <div className="font-lato flex justify-center items-center">
+    <FormContainer>
       <AuthForm
         fields={[
           {
@@ -12,11 +14,12 @@ const SignIn = () => {
           {
             label: "password",
             type: "password",
-          }
+          },
         ]}
-        submitButtonLabel="Sign In"
+        submitButtonLabel="sign in"
       />
-    </div>
+      <Link className="text-emerald-500 text-sm underline" to='/sign-up'>create an account</Link>
+    </FormContainer>
   );
 };
 
