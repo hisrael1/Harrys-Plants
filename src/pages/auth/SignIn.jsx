@@ -43,12 +43,13 @@ const SignIn = () => {
             username: values.username,
             password: values.password,
           });
-
+          
+          const data = await response.json();
           if (response.status == 201) {
-            console.log("signed in");
+            // console.log("signed in");
+            console.log(data);
             setError("");
           } else {
-            const data = await response.json();
             setError(data.error);
           }
         }}
