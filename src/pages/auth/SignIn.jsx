@@ -33,16 +33,6 @@ const SignIn = () => {
           ]}
           submitButtonLabel="sign in"
           onSubmit={async (values) => {
-            if (values.username.length < 4) {
-              setError("username too short");
-              return;
-            }
-
-            if (values.password.length < 4) {
-              setError("password too short");
-              return;
-            }
-
             const response = await userService.createSession({
               username: values.username,
               password: values.password,
