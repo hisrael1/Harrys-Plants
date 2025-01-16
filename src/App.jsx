@@ -1,19 +1,32 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
-import * as userService from 'services/user'
+import * as userService from "services/user";
+import SessionContext from "contexts/sessionContext";
+import { jwtDecode } from "jwt-decode";
 
 const App = () => {
-  // create context next to avoid prop drilling
   const [sessionToken, setSessionToken] = useState(() => userService.getSessionTokenStorage());
 
-  return <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<SignIn/>} />
-      <Route path="/sign-up" element={<SignUp/>} />
-    </Routes>
-  </BrowserRouter>
-}
+  return <SessionContext.Provider value={{
+    signIn: (sessionTokenValue) => {
+      setSessionToken(sessionTokenValue);
+      userService.setSessionTokenStorage(sessionTokenValue);
+    },
+    signOut: () => {
+      setSessionToken(null)
+      userService.removeSessionTokenStorage()
+    },
+    username: sessionToken ? jwtDecode(sessionToken).username : null,
+  }}>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
+      </Routes>
+    </BrowserRouter>
+  </SessionContext.Provider>;
+};
 
-export default App
+export default App;

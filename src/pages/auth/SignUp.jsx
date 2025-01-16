@@ -5,12 +5,12 @@ import FormContainer from "./AuthForm/FormContainer";
 import { Link } from "react-router-dom";
 import * as userService from 'services/user';
 
+
+
 const SignUp = () => {
   const [error, setError] = useState('');
-  // is const ok instead of let, as seen in the docs 
   const navigate = useNavigate();
-  // how to navigate? after a succesful sign up?
-  // make a
+
   return (
     <FormContainer>
       <div className="text-red-700 font-lato">{error}</div>
@@ -53,15 +53,16 @@ const SignUp = () => {
             password: values.password
           })
 
+          const data = await response.json();
           if (response.status == 201) {
+            setError('');
             navigate('/', {
               state: {
                 accountCreated: true
               }
             })
-            console.log('user created');
+            console.log('signed up')
           } else {
-            const data = await response.json();
             setError(data.error);
           }
         }}
