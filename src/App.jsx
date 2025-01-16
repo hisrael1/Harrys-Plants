@@ -3,8 +3,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
 import * as userService from "services/user";
-import SessionContext from "contexts/sessionContext";
+import SessionContext from "contexts/SessionContext";
 import { jwtDecode } from "jwt-decode";
+import PlantListPage from "pages/PlantListPage";
 
 const App = () => {
   const [sessionToken, setSessionToken] = useState(() => userService.getSessionTokenStorage());
@@ -24,6 +25,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/plants" element={<PlantListPage />} />
       </Routes>
     </BrowserRouter>
   </SessionContext.Provider>;
