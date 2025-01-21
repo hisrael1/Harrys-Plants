@@ -3,10 +3,11 @@ import { useParams } from "react-router-dom";
 import * as plantService from "services/plants";
 import NavBar from "shared/NavBar";
 import PlantInfoPage from "./PlantInfoPage";
+import LoadingSpinner from "shared/LoadingSpinner";
 
 const PlantShowPage = () => {
   const [plant, setPlant] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { plantId } = useParams();
 
   useEffect(() => {
@@ -26,11 +27,9 @@ const PlantShowPage = () => {
   return (
     <>
       <NavBar />
-      <div className="bg-emerald-50 min-h-screen flex justify-center font-lato">
+      <div className="bg-emerald-50 min-h-screen flex justify-center font-lato py-24 px-8">
         {isLoading ? (
-            <div className="flex justify-center py-32 items-start">
-                <i className="animate-spin fa-solid fa-spinner text-4xl text-emerald-700"></i>
-            </div>
+            <LoadingSpinner />
         ) : (
           <PlantInfoPage plant={plant} />
         )}
