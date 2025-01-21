@@ -1,3 +1,4 @@
+import * as userService from './user';
 const { VITE_API_BASE_URL, VITE_API_KEY } = import.meta.env;
 
 const apiFetch = (method, path, body = null) => {
@@ -12,6 +13,11 @@ const apiFetch = (method, path, body = null) => {
 
   if (body) {
     options.body = JSON.stringify(body);
+  }
+
+  const sessionToken = userService.getSessionTokenStorage();
+  if (sessionToken) {
+    options.headers['Capstone-Session'] = sessionToken;
   }
 
   return fetch(VITE_API_BASE_URL + path, options);
