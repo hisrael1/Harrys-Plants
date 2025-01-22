@@ -22,7 +22,7 @@ const PlantShowPage = () => {
         console.log("error");
       }
     })();
-  }, []);
+  }, [plantId]);
 
   return (
     <>
