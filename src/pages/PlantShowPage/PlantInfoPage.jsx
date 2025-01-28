@@ -22,7 +22,7 @@ const PlantInfoPage = (props) => {
           </div>
           <img
             src={plant.images?.[currentImgIdx].src}
-            className="rounded-xl w-[720px] object-cover"
+            className="rounded-lg object-cover"
           />
           <div className="flex">
             <BenefitBox
@@ -38,7 +38,7 @@ const PlantInfoPage = (props) => {
             />
           </div>
         </div>
-        <div className="flex flex-col flex-1 px-8">
+        <div className="flex flex-col flex-1 md:pl-8">
           <div className="hidden md:block">
             <PlantHeading plant={plant} />
           </div>
