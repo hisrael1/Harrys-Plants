@@ -4,6 +4,8 @@ const { VITE_API_BASE_URL, VITE_API_KEY } = import.meta.env;
 const apiFetch = (method, path, body = null) => {
   console.log('API URL:', VITE_API_BASE_URL + path);
   console.log('Environment:', import.meta.env);
+  console.log('deploy');
+
   
   const options = {
     method,
