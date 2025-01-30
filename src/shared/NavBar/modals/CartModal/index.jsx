@@ -1,13 +1,11 @@
 import CartItem from "./CartItem";
-import { RemoveScroll } from "react-remove-scroll";
 import SessionContext from "contexts/SessionContext";
 import { useState, useEffect, useContext, useCallback } from "react";
 import * as cartService from "services/cart";
 import LoadingSpinner from "shared/LoadingSpinner";
-import ModalWrapper from "../ModalWrapper";
+import { motion } from "framer-motion";
 
 const CartModal = (props) => {
-//   const { closeCart } = props;
   const { username } = useContext(SessionContext);
   const [cartItems, setCartItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -34,12 +32,11 @@ const CartModal = (props) => {
   }
 
   return (
-    <div className="h-screen w-full max-w-xl bg-white flex flex-col">
+    <motion.div className="h-screen w-full max-w-xl bg-white flex flex-col"
+        initial={{ translateX: '100%'}} animate={{ translateX: 0}} transition={{ duration: 0.5 }}
+    >
         <div className="bg-emerald-800 text-white font-playfair py-7 text-3xl text-center shadow-lg relative">
         {username}&apos;s Cart
-            {/* <button className="absolute right-2 top-2 text-4xl text-emerald-600" onClick={closeCart}>
-                <i className="fa-solid fa-circle-xmark"></i>
-            </button> */}
         </div>
         {isLoading ? (
             <LoadingSpinner />
@@ -64,7 +61,7 @@ const CartModal = (props) => {
             </>
             
         )}
-    </div>
+    </motion.div>
   );
 };
 

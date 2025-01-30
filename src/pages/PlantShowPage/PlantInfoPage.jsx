@@ -2,6 +2,8 @@ import { useState } from "react";
 import PlantHeading from "./PlantHeading";
 import BenefitBox from "./BenefitBox";
 import PotColorOptions from "./PotColorOptions";
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 
 const getRandomIdx = (array) => {
   return Math.floor(Math.random() * array.length)
@@ -20,10 +22,12 @@ const PlantInfoPage = (props) => {
           <div className="block mb-8 md:hidden">
             <PlantHeading plant={plant} />
           </div>
-          <img
-            src={plant.images?.[currentImgIdx].src}
-            className="rounded-lg object-cover"
-          />
+          <Zoom>
+            <img
+              src={plant.images?.[currentImgIdx].src}
+              className="rounded-lg object-cover"
+            />
+          </Zoom>
           <div className="flex">
             <BenefitBox
               icon="fa-regular fa-square-check"

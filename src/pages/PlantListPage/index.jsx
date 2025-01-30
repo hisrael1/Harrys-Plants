@@ -4,6 +4,7 @@ import NavBar from "shared/NavBar";
 import RedirectToSignInIfSignedOut from "shared/RedirectToSignInIfSignedOut";
 import PlantItem from "./PlantItem";
 import LoadingSpinner from "shared/LoadingSpinner";
+import { motion } from 'framer-motion'
 
 const PlantListPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -32,8 +33,16 @@ const PlantListPage = () => {
                 Plants In Stock
               </div>
               <div className="flex flex-wrap justify-center">
-                {plants.map((plant) => (
-                  <PlantItem key={plant.name} plant={plant} />
+                {plants.map((plant, idx) => (
+                  <motion.div 
+                    key={plant.name}
+                    initial={{ opacity: 0, translateY: "20px"}}
+                    whileInView={{ opacity: 1, translateY: 0}}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 + (idx % 3) * 0.2, duration: 0.4 }}
+                  >
+                    <PlantItem plant={plant} />
+                  </motion.div>
                 ))}
               </div>
             </div>
