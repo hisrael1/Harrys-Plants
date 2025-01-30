@@ -7,6 +7,8 @@ import SessionContext from "contexts/SessionContext";
 import { jwtDecode } from "jwt-decode";
 import PlantListPage from "pages/PlantListPage";
 import PlantShowPage from "pages/PlantShowPage";
+import ScrollToTop from "shared/ScrollToTop";
+
 
 const App = () => {
   const [sessionToken, setSessionToken] = useState(() => userService.getSessionTokenStorage());
@@ -23,6 +25,7 @@ const App = () => {
     username: sessionToken ? jwtDecode(sessionToken).username : null,
   }}>
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
