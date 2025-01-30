@@ -24,7 +24,7 @@ const CartItem = (props) => {
         </div>
         <div className="flex flex-col justify-between items-end">
             <div className="text-slate-500">${cartItem.quantity * cartItem.price_per_unit}</div>
-            <button className="text-sm text-slate-400 hover:text-red-800" onClick={async () => {
+            <button className="text-sm text-slate-400 hover:text-red-800 flex items-center" onClick={async () => {
                 const response = await cartService.deletePlantFromCart({id: cartItem.id});
                 const data = await response.json();
                 if (response.status == 200) {
