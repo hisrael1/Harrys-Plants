@@ -32,7 +32,7 @@ const CartModal = (props) => {
   }
 
   return (
-    <motion.div className="cart-modal h-screen h-[100dvh] w-full max-w-xl bg-white flex flex-col"
+    <motion.div className="cart-modal h-screen h-[100dvh] w-full max-w-xl bg-white flex flex-col trigger-rebuild"
         initial={{ translateX: '100%'}} animate={{ translateX: 0}} transition={{ duration: 0.5 }}
     >
         <div className="bg-emerald-800 text-white font-playfair py-7 text-3xl text-center shadow-lg relative">
