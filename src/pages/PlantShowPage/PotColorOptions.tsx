@@ -2,7 +2,24 @@ import { useState } from "react";
 import { POT_COLORS } from "shared/util";
 import * as cartService from "services/cart";
 
-const PotColorOptions = (props) => {
+interface PotColorOptionsProps {
+  plant: {
+    botanical_name: string;
+    care_instructions: string;
+    description: string;
+    id: number;
+    images: {
+      pot_color: string;
+      src: string;
+    };
+    name: string;
+    price: number;
+  },
+  currentImgIdx: number;
+  setCurrentImgIdx: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const PotColorOptions = (props: PotColorOptionsProps) => {
   const { plant, currentImgIdx, setCurrentImgIdx } = props;
   const [quantity, setQuantity] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -68,6 +85,11 @@ const PotColorOptions = (props) => {
               potColor: plant.images[currentImgIdx].pot_color,
               quantity,
             });
+            // const response = await cartService.addPlantToCart({
+            //   id: plant.id,
+            //   pot_color: plant.images[currentImgIdx].pot_color,
+            //   quantity,
+            // });
             const data = await response.json();
             setIsLoading(false);
           }}
