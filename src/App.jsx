@@ -9,7 +9,6 @@ import PlantListPage from "pages/PlantListPage";
 import PlantShowPage from "pages/PlantShowPage";
 import ScrollToTop from "shared/ScrollToTop";
 
-
 const App = () => {
   const [sessionToken, setSessionToken] = useState(() => userService.getSessionTokenStorage());
 

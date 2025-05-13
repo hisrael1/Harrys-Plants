@@ -1,8 +1,10 @@
-import * as userService from './user';
+/// <reference types="vite/client" />
+import * as userService from "./user";
 const { VITE_API_BASE_URL, VITE_API_KEY } = import.meta.env;
+import { Method, Path, Body } from "../types";
 
-const apiFetch = (method, path, body = null) => {  
-  const options = {
+const apiFetch = (method: Method, path: Path, body?: Body) => {
+  const options: RequestInit = {
     method,
     credentials: "include",
     headers: {
@@ -16,8 +18,8 @@ const apiFetch = (method, path, body = null) => {
   }
 
   const sessionToken = userService.getSessionTokenStorage();
-  if (sessionToken) {
-    options.headers['Capstone-Session'] = sessionToken;
+  if (sessionToken && options.headers) {
+    (options.headers as any)["Capstone-Session"] = sessionToken;
   }
 
   return fetch(VITE_API_BASE_URL + path, options);

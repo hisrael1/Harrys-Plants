@@ -1,4 +1,10 @@
-const BenefitBox = (props) => {
+interface BenefitBoxProps {
+    icon: string;
+    title: string;
+    description: string;
+}
+
+const BenefitBox = (props: BenefitBoxProps) => {
     const { icon, title, description } = props;
 
     return (

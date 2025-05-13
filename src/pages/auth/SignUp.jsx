@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 import * as userService from 'services/user';
 import RedirectToPlantsIfSignedIn from 'shared/RedirectToPlantsIfSignedIn';
 
-
-
 const SignUp = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();

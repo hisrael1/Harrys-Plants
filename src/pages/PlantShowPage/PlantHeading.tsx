@@ -1,4 +1,12 @@
-const PlantHeading = (props) => {
+interface PlantHeadingProps {
+  plant: {
+    name: string;
+    price: number;
+    botanical_name: string;
+  }
+}
+
+const PlantHeading = (props: PlantHeadingProps) => {
   const { plant } = props;
   return (
     <>
