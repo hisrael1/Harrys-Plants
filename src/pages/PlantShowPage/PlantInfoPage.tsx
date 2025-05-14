@@ -4,12 +4,14 @@ import BenefitBox from "./BenefitBox";
 import PotColorOptions from "./PotColorOptions";
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
+import { getRandomIdx } from "shared/util";
+import { Plant } from "./types";
 
-const getRandomIdx = (array) => {
-  return Math.floor(Math.random() * array.length)
+interface PlantInfoPageProps {
+  plant: Plant;
 }
 
-const PlantInfoPage = (props) => {
+const PlantInfoPage = (props: PlantInfoPageProps) => {
   const { plant } = props;
   const [currentImgIdx, setCurrentImgIdx] = useState(() => {
     return getRandomIdx(plant.images)

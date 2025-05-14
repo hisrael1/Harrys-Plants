@@ -1,20 +1,10 @@
 import { useState } from "react";
 import { POT_COLORS } from "shared/util";
 import * as cartService from "services/cart";
+import type { Plant } from "./types";
 
 interface PotColorOptionsProps {
-  plant: {
-    botanical_name: string;
-    care_instructions: string;
-    description: string;
-    id: number;
-    images: {
-      pot_color: string;
-      src: string;
-    };
-    name: string;
-    price: number;
-  },
+  plant: Plant;
   currentImgIdx: number;
   setCurrentImgIdx: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -80,17 +70,11 @@ const PotColorOptions = (props: PotColorOptionsProps) => {
           className="w-full ml-4 px-4 flex justify-center items-center bg-emerald-700 text-emerald-50 flex-1 rounded-full hover:bg-emerald-800"
           onClick={async () => {
             setIsLoading(true);
-            const response = await cartService.addPlantToCart({
+            await cartService.addPlantToCart({
               id: plant.id,
-              potColor: plant.images[currentImgIdx].pot_color,
+              pot_color: plant.images[currentImgIdx].pot_color,
               quantity,
             });
-            // const response = await cartService.addPlantToCart({
-            //   id: plant.id,
-            //   pot_color: plant.images[currentImgIdx].pot_color,
-            //   quantity,
-            // });
-            const data = await response.json();
             setIsLoading(false);
           }}
         >

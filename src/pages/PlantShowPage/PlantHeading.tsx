@@ -1,9 +1,7 @@
+import type { Plant } from "./types";
+
 interface PlantHeadingProps {
-  plant: {
-    name: string;
-    price: number;
-    botanical_name: string;
-  }
+  plant: Plant;
 }
 
 const PlantHeading = (props: PlantHeadingProps) => {
