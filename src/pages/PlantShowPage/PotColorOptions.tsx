@@ -70,6 +70,12 @@ const PotColorOptions = (props: PotColorOptionsProps) => {
           className="w-full ml-4 px-4 flex justify-center items-center bg-emerald-700 text-emerald-50 flex-1 rounded-full hover:bg-emerald-800"
           onClick={async () => {
             setIsLoading(true);
+            console.log("adding plant to cart");
+            console.log({
+              id: plant.id,
+              pot_color: plant.images[currentImgIdx].pot_color,
+              quantity,
+            });
             await cartService.addPlantToCart({
               id: plant.id,
               pot_color: plant.images[currentImgIdx].pot_color,
